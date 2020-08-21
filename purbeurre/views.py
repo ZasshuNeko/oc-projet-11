@@ -93,9 +93,9 @@ def redirect_resultat(request):
     search_user = request.POST['search']
     adresse = request.path
     if adresse.find('resultat'):
-        adresse_redirect = '/polls/resultat/' + search_user
+        adresse_redirect = '/purbeurre/resultat/' + search_user
     else:
-        adresse_redirect = '/polls/save/' + search_user
+        adresse_redirect = '/purbeurre/save/' + search_user
 
     return HttpResponseRedirect(
         adresse_redirect, {
@@ -188,4 +188,7 @@ def save(request, id_produit):
 
 class MentionsLegales(TemplateView):
     template_name = 'mention_legale.html'
-    # formMenu = SearchMenu()
+    def get_context_data(self, **kwargs):
+        formMenu = super().get_context_data(**kwargs)
+        formMenu = SearchMenu()
+        return {'formMenu':formMenu}

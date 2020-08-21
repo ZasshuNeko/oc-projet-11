@@ -18,6 +18,7 @@ from django.urls import include, path
 from django.views.generic.base import RedirectView
 
 urlpatterns = [
+    path('purbeurre/', include('purbeurre.urls')),
     path(
         'auth_app/',
         include('auth_app.urls')),
@@ -27,7 +28,4 @@ urlpatterns = [
     path(
         'admin/',
         admin.site.urls),
-    path(
-        '',
-        include('purbeurre.urls'))  ,
 ]
