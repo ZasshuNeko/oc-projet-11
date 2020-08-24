@@ -23,7 +23,7 @@
         <svg class="bd-placeholder-img card-img-top" width="100%" height="225px" xmlns="https://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="placeholder: Un produits">
             <title>Nous sommes heureux de vous comptez parmis nous</title>
             <rect width="100%" height="100%" fill="#55595c"></rect>
-            <image xlink:href='/static/oc_projetHuit/assets/img/bg_app.jpg' x="-50%" y="-50%"/>
+            <image xlink:href='/static/assets/img/bg_app.jpg' x="-50%" y="-50%"/>
         </svg>
         <div class="card-body">
             <p class="card-text text-center">
@@ -56,9 +56,9 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                     {% if resultat.index %}
-                    <a role="button" class="btn btn-sm btn-outline-secondary" href="/polls/maj/index/{{resultat.id}}/">Retirer de l'index</a>
+                    <a role="button" class="btn btn-sm btn-outline-secondary" href="/purbeurre/maj/index/{{resultat.id}}/">Retirer de l'index</a>
                     {% else %}
-                    <a role="button" class="btn btn-sm btn-outline-secondary" href="/polls/maj/index/{{resultat.id}}/">Mettre en index</a>
+                    <a role="button" class="btn btn-sm btn-outline-secondary" href="/purbeurre/maj/index/{{resultat.id}}/">Mettre en index</a>
                     {% endif %}
                     <a role="button" class="btn btn-sm btn-outline-secondary" href="{{resultat.url}}">OpenFoodFact</a>
             </div>

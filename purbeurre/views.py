@@ -38,7 +38,7 @@ def get_resultat(request, search):
     user_current = request.user
     search_user = search
     if len(search_user) == 0:
-        return HttpResponseRedirect('/polls/')
+        return HttpResponseRedirect('/purbeurre/')
     else:
         answer_search = Produits.objects.filter(
             generic_name_fr__icontains=search_user)
@@ -104,7 +104,7 @@ def redirect_resultat(request):
 
 def redirect_404(request, excetpion=None):
     msg = "La page demandée n'a pas été trouvé"
-    return redirect('/polls/', {'msg': msg})
+    return redirect('/purbeurre/', {'msg': msg})
 
 
 def get_aliment(request, id_produit):
@@ -169,7 +169,7 @@ def mise_index(request, id_produit):
         favoris_produit.aff_index = True
 
     favoris_produit.save()
-    return HttpResponseRedirect('/polls/favoris')
+    return HttpResponseRedirect('/purbeurre/favoris')
 
 
 @login_required(login_url="/auth_app/log_in/")

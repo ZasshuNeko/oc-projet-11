@@ -267,7 +267,7 @@ def generer_dic_produit(compare_search, user_current):
 
             compare_score = compare.grade
             if compare_score is None:
-                nutrilien = "oc_projetHuit/assets/img/nutriscore-NC.png"
+                nutrilien = "assets/img/nutriscore-NC.png"
             else:
                 nutrilien = lien_nutriscore(compare_score)
             produit['url_img_nutri'] = nutrilien
@@ -303,14 +303,14 @@ def lien_nutriscore(nutri_point):
     compare_score = nutri_point
 
     if int(compare_score) >= -15 and int(compare_score) <= 0:
-        lien = "oc_projetHuit/assets/img/nutriscore-A.png"
+        lien = "assets/img/nutriscore-A.png"
     elif int(compare_score) > 0 and int(compare_score) <= 3:
-        lien = "oc_projetHuit/assets/img/nutriscore-B.png"
+        lien = "assets/img/nutriscore-B.png"
     elif int(compare_score) >= 4 and int(compare_score) <= 11:
-        lien = "oc_projetHuit/assets/img/nutriscore-C.png"
+        lien = "assets/img/nutriscore-C.png"
     elif int(compare_score) >= 12 and int(compare_score) <= 16:
-        lien = "oc_projetHuit/assets/img/nutriscore-D.png"
+        lien = "assets/img/nutriscore-D.png"
     elif int(compare_score) >= 17 and int(compare_score) <= 40:
-        lien = "oc_projetHuit/assets/img/nutriscore-E.png"
+        lien = "assets/img/nutriscore-E.png"
 
     return lien

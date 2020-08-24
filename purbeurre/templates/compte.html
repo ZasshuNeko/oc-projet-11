@@ -9,6 +9,13 @@
                     </div>
                     <div class="col-lg-8 align-self-baseline">
                         <h2><p class="text-white-75 font-weight-light mb-5">Voici votre compte</p></h2>
+                {% if messages %}
+                    <ul class="messages">
+                {% for message in messages %}
+                    <il {% if message.tags %} class="{{ message.tags }}" {% endif %}><h2><p id="information" class="text-white-75 font-weight-light">{{ message }}</p></h2></il>
+                {% endfor %}
+                    </ul>
+                {% endif %}
                         </div>
                     </div>
                 </div>

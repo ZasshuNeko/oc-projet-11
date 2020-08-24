@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from app.models import Produits, Vendeurs, Nutriments, categories
+from purbeurre.models import Produits, Vendeurs, Nutriments, categories
 
 import requests
 import json

@@ -19,7 +19,7 @@ def log_out(request):
         request,
         messages.WARNING,
         "Vous êtes maintenant déconnecté")
-    return redirect('/polls/')
+    return redirect('/purbeurre/')
 
 
 def get_login(request, user=''):
@@ -34,7 +34,7 @@ def get_login(request, user=''):
         if form.is_valid():
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect("/polls/")
+                return HttpResponseRedirect("/purbeurre/")
     else:
         form = LogIn()
 
@@ -66,7 +66,7 @@ def get_signeit(request):
                     request,
                     messages.INFO,
                     "Vous avez maintenant un compte sur notre site")
-                return HttpResponseRedirect('/polls/')
+                return HttpResponseRedirect('/purbeurre/')
             except IntegrityError:
                 messages.add_message(
                     request, messages.INFO, "Ce compte existe déjà")

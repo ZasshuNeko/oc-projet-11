@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template.loader import *
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .forms import Edit, SearchMenu
 
@@ -52,19 +53,48 @@ def edit_valide(request, username):
     user_current = request.user
 
     if request.method == 'POST':
+        form = Edit(request.POST)
         email = request.POST['email']
         last_name = request.POST['last_name']
         first_name = request.POST['first_name']
+        pass_first = request.POST['pass_first']
+        pass_second = request.POST['pass_second']
+
+        password = False
+        if pass_first == pass_second:
+            if len(pass_first) > 0:
+                password = True
+                pass_final = pass_first
+
 
         user_current.email = email
         user_current.last_name = last_name
         user_current.first_name = first_name
 
-        user_current.save()
-        name = affiche_nom(
-            user_current.first_name,
-            user_current.last_name,
-            user_current.username)
+        if password:
+            user_current.set_password(pass_final)
+            user_current.save()
+            messages.add_message(
+                    request,
+                    messages.INFO,
+                    "Mot de passe modifié ! Reconnectez-vous")
+        elif len(pass_first) > 0:
+            messages.add_message(
+                request,
+                messages.INFO,
+                "Vos mots de passe sont différents ! Enregistrement annulé")
+        else:
+
+            user_current.save()
+            messages.add_message(
+                    request,
+                    messages.INFO,
+                    "Vos informations ont été modifiées")
+        
+    name = affiche_nom(
+        user_current.first_name,
+        user_current.last_name,
+        user_current.username)
 
     data_compte = {
         'email': user_current.email,

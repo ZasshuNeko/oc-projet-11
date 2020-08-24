@@ -6,6 +6,13 @@
     <div class="col-lg-10 align-self-end">
             <h1 class="text-uppercase text-white font-weight-bold">Connectez-vous pour avoir accès à ce magnifique projet !</h1>
             <hr class="divider my-4" />
+            {% if messages %}
+                <ul class="messages">
+            {% for message in messages %}
+                <il {% if message.tags %} class="{{ message.tags }}" {% endif %}><h2><p id="information" class="text-white-75 font-weight-light">{{ message }}</p></h2></il>
+            {% endfor %}
+                </ul>
+            {% endif %}
     </div>
     <div class="col-lg-8 align-self-baseline">
         <h2><p class="text-white-75 font-weight-light mb-5">Trouvez un produit de substitution pour ceux que vous consommez tous les jours.</p></h2>
