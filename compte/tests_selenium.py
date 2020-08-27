@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from polls.models import Produits, Favoris
+from purbeurre.models import Produits, Favoris
 from django.contrib.auth.models import User
 
 from django.test import LiveServerTestCase

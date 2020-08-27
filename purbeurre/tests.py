@@ -1,10 +1,11 @@
 from django.test import TestCase
 from django.urls import reverse
+
 from .models import Produits, Favoris
+
 from django.contrib.auth.models import User
 
 # Create your tests here.
-
 
 class TestApp(TestCase):
     """ Mise en place des tests """
@@ -19,8 +20,38 @@ class TestApp(TestCase):
         test_user1.save()
         test_user2.save()
 
-        id_produit1 = Produits.objects.get(pk=1)
-        id_produit2 = Produits.objects.get(pk=2)
+        id_produit1 = Produits.objects.create(
+            id=1,
+            ingredient ="NC",
+            url_image_ingredients = "",
+            brands_tags = ['test1','test2'],
+            grade = 20,
+            image_front_url = "NC",
+            image_nutrition_url = "NC",
+            nova_groups = "NC",
+            generic_name_fr = 'Test produit',
+            url_site = "https://testest.com",
+            ingredients_text_fr = 'Blbablablabalba test',
+            _id = 7895225)
+        id_produit2 = Produits.objects.create(
+            id=2,
+            ingredient ="NC",
+            url_image_ingredients = "",
+            brands_tags = ['test1','test2'],
+            grade = -5,
+            image_front_url = "NC",
+            image_nutrition_url = "NC",
+            nova_groups = "NC",
+            generic_name_fr = 'Test produit',
+            url_site = "https://testest.com",
+            ingredients_text_fr = 'Blbablablabalba test',
+            _id = 7895225)
+
+        id_produit1.save()
+        id_produit2.save()
+
+        #id_produit1 = Produits.objects.get(pk=1)
+        #id_produit2 = Produits.objects.get(pk=2)
 
         test_favoris = Favoris.objects.create(
             user=test_user1,
@@ -63,7 +94,7 @@ class TestApp(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'log_in.html')
 
-        check_favoris = self.client.get('/polls/favoris/')
+        check_favoris = self.client.get('/purbeurre/favoris/')
 
         self.assertEqual(len(check_favoris.context['trouve']), 3)
 
@@ -86,7 +117,7 @@ class TestApp(TestCase):
 
         self.assertEqual(str(response.context['user']), 'testuser1')
         self.assertEqual(response.status_code, 200)
-        check_favoris = self.client.get('/polls/favoris/')
+        check_favoris = self.client.get('/purbeurre/favoris/')
         liste_favoris = check_favoris.context['trouve']
 
         x = 0
@@ -101,11 +132,11 @@ class TestApp(TestCase):
         Lets test research '''
         terme_search = "nutella"
         response = self.client.post(
-            '/polls/resultat/' + terme_search + '/', {'search': terme_search})
+            '/purbeurre/resultat/' + terme_search + '/', {'search': terme_search})
 
         if terme_search == "":
             self.assertEqual(response.status_code, 302)
-            self.assertRedirects(response, '/polls/')
+            self.assertRedirects(response, '/purbeurre/')
         else:
             self.assertEqual(response.status_code, 200)
             if response.context['cherche']['error']:
@@ -118,7 +149,7 @@ class TestApp(TestCase):
         '''
         terme_search = "trucmachin"
         response = self.client.post(
-            '/polls/resultat/' + terme_search + '/', {'search': terme_search})
+            '/purbeurre/resultat/' + terme_search + '/', {'search': terme_search})
 
         self.assertEqual(response.status_code, 200)
         if response.context['cherche']['error']:
@@ -129,11 +160,11 @@ class TestApp(TestCase):
         '''
         terme_search = "gateau"
         response = self.client.post(
-            '/polls/resultat/' + terme_search + '/', {'search': terme_search})
+            '/purbeurre/resultat/' + terme_search + '/', {'search': terme_search})
 
         if terme_search == "":
             self.assertEqual(response.status_code, 302)
-            self.assertRedirects(response, '/polls/')
+            self.assertRedirects(response, '/purbeurre/')
         else:
             self.assertEqual(response.status_code, 200)
             if response.context['cherche']['error']:
@@ -151,12 +182,12 @@ class TestApp(TestCase):
         self.assertEqual(str(response.context['user']), 'testuser1')
         self.assertEqual(response.status_code, 200)
 
-        response = self.client.get('/polls/')
+        response = self.client.get('/purbeurre/')
         self.assertNotEqual(len(response.context['trouve']), 0)
 
     def test_get_aliment(self):
         ''' test la page d'affichage des fiches de produit
         test the display page of product sheets '''
-        data = {'id_produit': 2}
-        response = self.client.get('/polls/aliments/2/', data)
+        data = {'id_produit': 1}
+        response = self.client.get('/purbeurre/aliments/1', data)
         self.assertNotEqual(len(response.context['produit']), 0)

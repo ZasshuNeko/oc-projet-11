@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
-from polls.models import Produits, Favoris
+
+from purbeurre.models import Produits, Favoris
+
 from django.contrib.auth.models import User
 
 from django.test import LiveServerTestCase
@@ -26,8 +28,33 @@ class TestApp(TestCase):
         test_user1.save()
         test_user2.save()
 
-        id_produit1 = Produits.objects.get(pk=1)
-        id_produit2 = Produits.objects.get(pk=2)
+        id_produit1 = Produits.objects.create(
+            ingredient ="NC",
+            url_image_ingredients = "",
+            brands_tags = ['test1','test2'],
+            grade = 20,
+            image_front_url = "NC",
+            image_nutrition_url = "NC",
+            nova_groups = "NC",
+            generic_name_fr = 'Test produit',
+            url_site = "https://testest.com",
+            ingredients_text_fr = 'Blbablablabalba test',
+            _id = 7895225)
+        id_produit2 = Produits.objects.create(
+            ingredient ="NC",
+            url_image_ingredients = "",
+            brands_tags = ['test1','test2'],
+            grade = -5,
+            image_front_url = "NC",
+            image_nutrition_url = "NC",
+            nova_groups = "NC",
+            generic_name_fr = 'Test produit',
+            url_site = "https://testest.com",
+            ingredients_text_fr = 'Blbablablabalba test',
+            _id = 7895225)
+        
+        id_produit1.save()
+        id_produit2.save()
 
         test_favoris = Favoris.objects.create(
             user=test_user1,
@@ -99,7 +126,9 @@ class TestApp(TestCase):
         default_data = {
             "last_name": "TestDjango",
             "first_name": "TestDjangoFirst",
-            "email": "Test@test.test"}
+            "email": "Test@test.test",
+            "pass_first": '',
+            "pass_second": ''}
 
         test_edit = self.client.post(
             '/compte/get_compte/' + str(response.context['user']) + '/valide/', default_data)

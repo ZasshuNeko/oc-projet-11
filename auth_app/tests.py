@@ -26,7 +26,7 @@ class TestAuth(TestCase):
         default_data = {"log_id": "testuser1", "pwd": "testtest"}
         test_login = self.client.post('/auth_app/log_in/', default_data)
         self.assertEqual(test_login.status_code, 302)
-        self.assertRedirects(test_login, '/polls/')
+        self.assertRedirects(test_login, '/purbeurre/')
 
     def test_log_out(self):
         ''' Test la deconnexion
@@ -35,7 +35,7 @@ class TestAuth(TestCase):
         response = self.client.get(reverse('logout'))
         self.assertIsNone(response.context)
         self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '/polls/')
+        self.assertRedirects(response, '/purbeurre/')
 
     def test_signeit(self):
         ''' Test la possibilité de s'inscrire

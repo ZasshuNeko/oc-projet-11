@@ -5,14 +5,13 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-
 class Produits(models.Model):
-    ingredient = models.CharField(max_length=5000)
-    url_image_ingredients = models.URLField(max_length=5000)
+    ingredient = models.CharField(max_length=5000, default="NC")
+    url_image_ingredients = models.URLField(max_length=5000, default="")
     brands_tags = models.CharField(max_length=1000)
     grade = models.CharField(max_length=800, blank=True, null=True)
-    image_front_url = models.URLField(max_length=5000)
-    image_nutrition_url = models.URLField(max_length=5000)
+    image_front_url = models.URLField(max_length=5000, default="NC")
+    image_nutrition_url = models.URLField(max_length=5000, default="NC")
     nova_groups = models.CharField(max_length=800, null=True)
     generic_name_fr = models.CharField(max_length=5000)
     url_site = models.URLField(max_length=5000)
@@ -21,7 +20,6 @@ class Produits(models.Model):
 
     def __str__(self):
         return self.brands_tags
-
 
 class categories(models.Model):
     nom = models.CharField(max_length=5000)

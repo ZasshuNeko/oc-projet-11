@@ -65,7 +65,7 @@ class AccountTestCase(LiveServerTestCase):
 
         # submitting the form
         submit.send_keys(Keys.RETURN)
-        selenium.implicitly_wait(10)
+        selenium.implicitly_wait(20)
         name_index = "Bonjour TestSelenium"
         # check the returned result
         self.assertEqual(selenium.find_element_by_css_selector(
