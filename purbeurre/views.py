@@ -111,7 +111,6 @@ def get_aliment(request, id_produit):
     ''' Montre une fiche d'un aliment sélectionné
     Show a record of a selected food '''
     data_produit = {}
-    print(Produits.objects.get(ID__exact=id_produit))
     produit = Produits.objects.get(id__exact=id_produit)
 
     data_produit['nom'] = produit.generic_name_fr

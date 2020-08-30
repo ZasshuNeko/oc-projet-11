@@ -61,8 +61,6 @@ class AccountTestCase(LiveServerTestCase):
         first_name = selenium.find_element_by_id('id_first_name')
         last_name = selenium.find_element_by_id('id_last_name')
 
-        print(selenium.find_element_by_id("first").get_attribute("value"))
-
         self.assertEqual(selenium.find_element_by_id(
             "first").get_attribute("value"), "TestSelenium")
         self.assertEqual(selenium.find_element_by_id(
